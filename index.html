@@ -207,7 +207,58 @@ canvas{max-width:100%}
 .copy-empty{text-align:center;padding:30px;color:#94a3b8}
 .copy-empty .ic{font-size:42px}
 @media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr)}.mkt-grid{grid-template-columns:repeat(2,1fr)}.copy-imgs{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.side{position:static;width:100%;display:flex;overflow:auto}.colbtn{display:none}.brand{display:none}.navitem{flex:0 0 auto;margin:0 2px}.app{flex-direction:column}.main{margin-left:0}.timer-display .big{font-size:48px}.timer-presets{grid-template-columns:repeat(2,1fr)}.copy-article{padding:20px 16px}}
+@media(max-width:640px){
+ body{font-size:15px}
+ .app{flex-direction:column}
+ .side{position:sticky;top:0;width:100%;height:auto;max-height:64px;display:flex;flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:8px;border-right:none;border-bottom:1px solid #dbeafe;background:#fff;z-index:50;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .side::-webkit-scrollbar{display:none}
+ .brand{display:none}
+ .colbtn{display:none}
+ .navitem{flex:0 0 auto;flex-direction:column;gap:2px;padding:6px 10px;margin:0 3px;font-size:11px;border-radius:10px;min-width:58px;text-align:center;white-space:nowrap}
+ .navitem .ic{font-size:22px}
+ .app.collapsed .side{width:100%}
+ .app.collapsed .navitem{justify-content:center;padding:6px 10px}
+ .app.collapsed .main{margin-left:0}
+ .main{margin-left:0;padding:12px;max-width:100%}
+ h2{font-size:18px;margin-bottom:10px}
+ .card{padding:14px;border-radius:12px;margin-bottom:12px}
+ .row{gap:8px}
+ .stat{flex:1;min-width:calc(50% - 4px);padding:12px}
+ .stat .n{font-size:22px}
+ .tabs{gap:6px}
+ .tab{padding:6px 12px;font-size:13px}
+ input,select,textarea{padding:11px 12px;font-size:16px}
+ button{padding:11px 16px;font-size:15px}
+ .cal .d{font-size:11px;padding-top:4px}
+ .cal .d .calimg{width:16px;height:16px;bottom:2px}
+ .cal .h{font-size:10px}
+ .timer-display{padding:16px 0}
+ .timer-display .big{font-size:52px}
+ .timer-ctrl button{font-size:15px;padding:10px 20px}
+ .timer-presets{grid-template-columns:repeat(2,1fr)}
+ .timer-preset{padding:10px 6px}
+ .timer-custom input{width:70px}
+ .news-grid{grid-template-columns:1fr}
+ .mkt-grid{grid-template-columns:repeat(2,1fr)}
+ .copy-article{padding:18px 14px;font-size:15px}
+ .copy-imgs{grid-template-columns:1fr}
+ .gallery{grid-template-columns:repeat(2,1fr)}
+ .fund-table{display:block;overflow-x:auto;white-space:nowrap;width:100%}
+ .per-cal{gap:4px}
+ .per-d{width:32px;height:32px;font-size:12px}
+ .rep-summary{grid-template-columns:1fr}
+ .rep-range{flex-direction:column;gap:8px;align-items:stretch}
+ .anal-detail-box{padding:16px;border-radius:12px;max-width:100%;max-height:92vh}
+ .copy-tools button,.copy-hot{font-size:13px}
+ .refresh-btn{width:100%;margin:0 0 12px 0;justify-content:center}
+}
+@media(max-width:380px){
+ .stat{min-width:100%}
+ .timer-display .big{font-size:42px}
+ .navitem{padding:6px 8px;min-width:50px;font-size:10px}
+ .gallery{grid-template-columns:1fr}
+ .mkt-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -385,7 +436,7 @@ function rdm(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
 function mockAnalyze(url){
  const p=detectPlatform(url);
  const titles={'抖音':'一个视频讲清楚，盖碗盖子怎么放？','小红书':'盖碗泡茶入门，这3个细节别做错','B站':'茶文化科普：盖碗的正确打开方式','快手':'老茶客教你盖碗手法','微博':'#茶文化# 盖碗盖子到底怎么放'}[p]||'内容解析示例';
- return{id:uid(),url,title,platform:p,type:'视频',author:'示例创作者',fans:rdm(1,50)+'.'+rdm(1,9)+'万',duration:rdm(1,5)+'分'+rdm(10,59)+'秒',resolution:'1080×1920',publishTime:'2026-07-'+rdm(10,28),analyzeTime:new Date().toLocaleString('zh-CN'),tags:['#茶文化','#知识科普','#生活技巧','#单人口播'],stats:{likes:rdm(1000,9000),comments:rdm(50,500),shares:rdm(100,1000),favorites:rdm(500,3000)},summary:'本内容从用户日常泡茶场景切入，用通俗语言解释了盖碗盖子摆放的三种常见方式及其背后的茶文化逻辑。节奏舒缓、信息密度适中，适合茶文化爱好者和新手观看收藏。',sections:[{title:'一、选题逻辑分析',rows:[{dim:'目标人群',analysis:'茶文化爱好者 + 茶道新手，对生活美学和传统文化感兴趣的用户。'},{dim:'痛点/需求',analysis:'泡茶时不知道盖子该盖还是掀开，操作不规范影响茶汤口感。'}]},{title:'二、内容结构分析',rows:[{dim:'开场钩子',analysis:'直接抛出“盖碗盖子怎么放”的疑问，引发好奇。'},{dim:'主体论证',analysis:'分三种场景演示：全盖、半盖、掀开，并解释适用茶类。'},{dim:'结尾转化',analysis:'总结口诀，引导点赞收藏和关注。'}]},{title:'三、可复制亮点',rows:[{dim:'表现形式',analysis:'近景手部特写 + 慢动作，降低理解门槛。'},{dim:'话术特点',analysis:'用“老茶客”人设增加信任感，语言口语化。'}]}]};
+ return{id:uid(),url,title,platform:p,type:'视频',author:'示例创作者',fans:rdm(1,50)+'.'+rdm(1,9)+'万',duration:rdm(1,5)+'分'+rdm(10,59)+'秒',resolution:'1080×1920',publishTime:'2026-07-'+rdm(10,28),analyzeTime:new Date().toLocaleString('zh-CN'),tags:['#茶文化','#知识科普','#生活技巧','#单人口播'],stats:{likes:rdm(1000,9000),comments:rdm(50,500),shares:rdm(100,1000),favorites:rdm(500,3000)},summary:'本内容从用户日常泡茶场景切入，用通俗语言解释了盖碗盖子摆放的三种常见方式及其背后的茶文化逻辑。节奏舒缓、信息密度适中，适合茶文化爱好者和新手观看收藏。',sections:[{title:'一、选题逻辑分析',rows:[{dim:'目标人群',analysis:'茶文化爱好者 + 茶道新手，对生活美学和传统文化感兴趣的用户。'},{dim:'痛点/需求',analysis:'泡茶时不知道盖子该盖还是掀开，操作不规范影响茶汤口感。'}]},{title:'二、内容结构分析',rows:[{dim:'开场钩子',analysis:'直接抛出"盖碗盖子怎么放"的疑问，引发好奇。'},{dim:'主体论证',analysis:'分三种场景演示：全盖、半盖、掀开，并解释适用茶类。'},{dim:'结尾转化',analysis:'总结口诀，引导点赞收藏和关注。'}]},{title:'三、可复制亮点',rows:[{dim:'表现形式',analysis:'近景手部特写 + 慢动作，降低理解门槛。'},{dim:'话术特点',analysis:'用"老茶客"人设增加信任感，语言口语化。'}]}]};
 }
 VIEWS.analysis=()=>{const pending=ANALDB.filter(a=>!a.analyzeTime),done=ANALDB.filter(a=>a.analyzeTime);
  return `<h2>🔍 内容解析</h2><div class="card"><h3 style="font-size:16px;margin-bottom:6px">提交内容链接进行分析</h3><div class="anal-input"><input id="aurl" placeholder="粘贴抖音/小红书/B站/快手等视频或图文链接..."><button onclick="submitAnalysis()">提交分析</button></div><p class="muted" style="margin-top:8px">支持抖音、小红书、B站、快手、微博等平台；离线版会生成示例解析。</p></div>
@@ -550,7 +601,7 @@ INIT.money=()=>{
    const ctx=cv.getContext('2d');const w=cv.width=cv.parentElement.offsetWidth-32,h=cv.height=240;ctx.clearRect(0,0,w,h);
    if(!cats.length){ctx.fillStyle='#94a3b8';ctx.font='14px sans-serif';ctx.textAlign='center';ctx.fillText('暂无数据',w/2,h/2);return;}
    const max=Math.max(...cats.map(c=>c[1]));const barW=Math.min(40,(w-60)/cats.length-10);
-   const cols=repType==='out'?['#f97316','#fb923c','#fdba74','#fed7aa','#ffedd5','#fca5a5','#f87171','#ef4444']:['#16a34a','#22c55e','#4ade80','#86efac','#bbf7d0','#34d399','#10b981','#059669'];
+   const cols=repType==='out'?['#f97316','#fb923c','#fdba74','#fed7aa','#ffedd5','#fca5a5','#f87171','#ef4448']:['#16a34a','#22c55e','#4ade80','#86efac','#bbf7d0','#34d399','#10b981','#059669'];
    ctx.font='11px sans-serif';ctx.textAlign='center';
    cats.forEach((c,i)=>{
     const x=40+i*(barW+10),barH=(c[1]/max)*160;
