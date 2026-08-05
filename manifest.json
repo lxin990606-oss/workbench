@@ -1,7 +1,7 @@
 {
   "name": "我的工作台",
   "short_name": "工作台",
-  "start_url": ".",
+  "start_url": "/workbench/",
   "display": "standalone",
   "background_color": "#eef4fb",
   "theme_color": "#2563eb",

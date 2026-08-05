@@ -1,4 +1,4 @@
-const CACHE='workbench-v2';
+const CACHE='workbench-v3';
 self.addEventListener('install',e=>{
  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/workbench/','/workbench/index.html','/workbench/manifest.json'])));
  self.skipWaiting();
