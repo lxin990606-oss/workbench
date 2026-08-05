@@ -7,9 +7,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="我的工作台">
 <meta name="theme-color" content="#2563eb">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/workbench/manifest.json">
 <script>
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/workbench/sw.js');}
 </script>
 <title>我的工作台</title>
 <style>
@@ -68,40 +68,6 @@ canvas{max-width:100%}
 .gcard{border-radius:12px;height:120px;display:flex;align-items:flex-end;padding:10px;color:#fff;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.4)}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 18px;border-radius:10px;opacity:0;transition:.3s;pointer-events:none}
 .toast.show{opacity:1}
-.news-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
-.news-header h2{margin:0}
-.news-sub{color:#64748b;font-size:12px;margin-top:2px}
-.news-meta{font-size:12px;color:#94a3b8;margin-bottom:14px}
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.news-col{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.news-col-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.news-col-title{display:flex;align-items:center;gap:8px;font-weight:700}
-.news-col-count{font-size:11px;color:#64748b;background:#f1f5f9;padding:2px 8px;border-radius:999px}
-.news-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f8fafc;cursor:pointer}
-.news-item:last-child{border-bottom:0}
-.news-item:hover{background:#f8fafc;border-radius:6px}
-.news-rank{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;background:#cbd5e1;flex:0 0 auto}
-.news-rank.r1{background:#8b5cf6}.news-rank.r2{background:#3b82f6}.news-rank.r3{background:#f59e0b}
-.news-title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
-.news-heat{font-size:12px;color:#94a3b8;flex:0 0 auto}
-.anal-input{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
-.anal-input input{flex:1}
-.anal-card{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #f1f5f9}
-.anal-title{font-weight:600;margin-bottom:6px}
-.anal-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.anal-tag{font-size:11px;padding:2px 8px;border-radius:999px;background:#f3e8ff;color:#7e22ce}
-.anal-stat{display:flex;gap:12px;font-size:12px;color:#64748b;margin-bottom:8px}
-.anal-summary{font-size:13px;color:#475569;line-height:1.6}
-.anal-link{color:#7e22ce;cursor:pointer;font-size:12px}
-.anal-detail{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
-.anal-detail.show{display:flex}
-.anal-detail-box{background:#fff;border-radius:16px;max-width:760px;width:100%;max-height:90vh;overflow:auto;padding:20px}
-.anal-close{float:right;cursor:pointer;font-size:20px;color:#64748b}
-.anal-section{margin-top:16px}
-.anal-section h3{font-size:14px;color:#7e22ce;margin-bottom:8px}
-.anal-table{width:100%;font-size:13px;border-collapse:collapse}
-.anal-table td{padding:8px;border:1px solid #f1f5f9;vertical-align:top}
-.anal-table td:first-child{width:100px;color:#64748b;background:#fafafa}
 .check-row{display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid #f1f5f9}
 .check-row:last-child{border-bottom:0}
 .check-row input[type=checkbox]{width:18px;height:18px;cursor:pointer}
@@ -145,7 +111,7 @@ canvas{max-width:100%}
 .fund-tabs{display:flex;gap:6px;margin-bottom:14px}
 .fund-tab{padding:7px 16px;border-radius:999px;background:#eef2f7;cursor:pointer;color:#475569}
 .fund-tab.active{background:#2563eb;color:#fff}
-.mkt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.mkt-grid{grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
 .mkt-card{background:#f8fafc;border-radius:10px;padding:10px;text-align:center}
 .mkt-card .l{font-size:11px;color:#64748b}
 .mkt-card .n{font-size:18px;font-weight:700;margin:2px 0}
@@ -154,6 +120,7 @@ canvas{max-width:100%}
 .mkt-hot span{padding:3px 10px;border-radius:999px;font-size:12px}
 .mkt-hot .up{background:#dcfce7;color:#16a34a}
 .mkt-hot .down{background:#fef2f2;color:#dc2626}
+@media(max-width:900px){.mkt-grid{grid-template-columns:repeat(2,1fr)}}
 .anl-section{margin-bottom:16px}
 .anl-section h3{font-size:15px;color:#1e3a8a;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px}
 .anl-section p{font-size:13px;color:#475569;line-height:1.7}
@@ -194,27 +161,6 @@ canvas{max-width:100%}
 .timer-alert-box h2{font-size:20px;margin-bottom:8px}
 .timer-alert-box p{color:#64748b;margin-bottom:20px;font-size:14px}
 .timer-alert-box button{font-size:16px;padding:10px 32px}
-.copy-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
-.copy-tools button{display:flex;align-items:center;gap:6px}
-.copy-hots{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.copy-hot{font-size:12px;padding:5px 12px;border-radius:999px;background:#fef3c7;color:#92400e;cursor:pointer}
-.copy-hot:hover{background:#fde68a}
-.copy-article{background:#fff;border-radius:14px;padding:30px 34px;max-width:720px;margin:0 auto;font-size:15.5px;line-height:1.95;color:#2d3340}
-.copy-article h1{font-size:22px;line-height:1.5;margin-bottom:6px;color:#1a1d26;letter-spacing:.5px}
-.copy-author{font-size:12px;color:#a0a6b1;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #f0f1f4}
-.copy-article p{margin-bottom:16px;text-align:justify}
-.copy-article p.mid{color:#8a8f9a}
-.copy-article .quote{border-left:3px solid #e0a33b;padding-left:14px;color:#6a6f7a;font-size:14.5px;margin-bottom:16px}
-.copy-article .end{color:#7c8290;font-size:14px;margin-top:22px}
-.copy-article .pick{display:inline-block;font-size:11px;color:#fff;background:#e0a33b;border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:2px}
-.copy-imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
-.copy-img{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.copy-img canvas,.copy-img img{width:100%;display:block}
-.copy-img .cap{font-size:12px;color:#64748b;padding:8px 10px;text-align:center}
-.copy-img .dl{font-size:12px;color:#2563eb;cursor:pointer;text-align:center;padding:0 10px 10px}
-.copy-empty{text-align:center;padding:30px;color:#94a3b8}
-.copy-empty .ic{font-size:42px}
-@media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr)}.mkt-grid{grid-template-columns:repeat(2,1fr)}.copy-imgs{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){
  body{font-size:15px}
  .app{flex-direction:column}
@@ -247,18 +193,13 @@ canvas{max-width:100%}
  .timer-presets{grid-template-columns:repeat(2,1fr)}
  .timer-preset{padding:10px 6px}
  .timer-custom input{width:70px}
- .news-grid{grid-template-columns:1fr}
  .mkt-grid{grid-template-columns:repeat(2,1fr)}
- .copy-article{padding:18px 14px;font-size:15px}
- .copy-imgs{grid-template-columns:1fr}
  .gallery{grid-template-columns:repeat(2,1fr)}
  .fund-table{display:block;overflow-x:auto;white-space:nowrap;width:100%}
  .per-cal{gap:4px}
  .per-d{width:32px;height:32px;font-size:12px}
  .rep-summary{grid-template-columns:1fr}
  .rep-range{flex-direction:column;gap:8px;align-items:stretch}
- .anal-detail-box{padding:16px;border-radius:12px;max-width:100%;max-height:92vh}
- .copy-tools button,.copy-hot{font-size:13px}
  .refresh-btn{width:100%;margin:0 0 12px 0;justify-content:center}
 }
 @media(max-width:380px){
@@ -285,7 +226,6 @@ const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const today=()=>new Date().toISOString().slice(0,10);
-const nowT=()=>new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
 const store={get(k,d){try{const v=localStorage.getItem('wb_'+k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){localStorage.setItem('wb_'+k,JSON.stringify(v));}};
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800);}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
@@ -322,7 +262,7 @@ function drawLine(cv,pts){
  if(!pts.length){ctx.fillStyle='#94a3b8';ctx.fillText('暂无数据',12,20);return;}
  const v=pts.map(p=>p.value),min=Math.min(...v),max=Math.max(...v),pad=34;
  const X=i=>pad+i*(w-2*pad)/Math.max(1,pts.length-1);
- const Y=val=>h-pad-(max===min?.5:(val-min)/(max-min))*(h-2*pad);
+ const Y=val=>h-pad-(max===min?0.5:(val-min)/(max-min))*(h-2*pad);
  ctx.strokeStyle='#cbd5e1';ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
  ctx.fillStyle='#64748b';ctx.font='11px sans-serif';
  ctx.fillText(max.toFixed(1),4,pad+4);ctx.fillText(min.toFixed(1),4,h-pad);
@@ -334,7 +274,6 @@ function drawLine(cv,pts){
 /* ---------- 减肥计划 ---------- */
 let wtTab='exercise';
 const CHECKINS=store.get('checkins',[]);
-const CATMAP={'力量训练':'strength','球类':'strength','跑步':'cardio','快走':'cardio','跳绳':'cardio','骑行':'cardio','游泳':'cardio','瑜伽':'cardio','其他':'cardio','休息':'rest'};
 const VIEWS={};const INIT={};
 VIEWS.weight=()=>{
  const ex=store.get('exercise',[]),we=store.get('weight',[]);
@@ -438,28 +377,6 @@ INIT.meal=()=>{const ms=store.get('meals',[]);const mt=ms.filter(m=>m.date===tod
  const day=ms.filter(m=>m.date===mealDate&&m.image);
  $('#dayimgs').innerHTML=day.length?`<div class="gallery">${day.map(m=>`<div class="gcard" style="background:#fff;height:160px;padding:6px;align-items:stretch;text-shadow:none"><img src="${m.image}" style="width:100%;height:100%;object-fit:cover;border-radius:8px"><div style="color:#64748b;font-size:11px;text-align:center;padding-top:4px;text-shadow:none;font-weight:400">${m.name||'未命名'}</div></div>`).join('')}</div>`:'<p class="muted">这一天没有图片记录</p>';
  $$('.cal .d[data-date]').forEach(c=>c.onclick=()=>pickMealDay(c.dataset.date));};
-
-/* ---------- 内容解析（离线示例） ---------- */
-const ANALDB=store.get('analysis',[]);
-function detectPlatform(u){if(u.includes('douyin'))return'抖音';if(u.includes('xiaohongshu'))return'小红书';if(u.includes('bilibili')||u.includes('b23.tv'))return'B站';if(u.includes('kuaishou'))return'快手';if(u.includes('weibo'))return'微博';return'未知平台';}
-function rdm(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-function mockAnalyze(url){
- const p=detectPlatform(url);
- const titles={'抖音':'一个视频讲清楚，盖碗盖子怎么放？','小红书':'盖碗泡茶入门，这3个细节别做错','B站':'茶文化科普：盖碗的正确打开方式','快手':'老茶客教你盖碗手法','微博':'#茶文化# 盖碗盖子到底怎么放'}[p]||'内容解析示例';
- return{id:uid(),url,title,platform:p,type:'视频',author:'示例创作者',fans:rdm(1,50)+'.'+rdm(1,9)+'万',duration:rdm(1,5)+'分'+rdm(10,59)+'秒',resolution:'1080×1920',publishTime:'2026-07-'+rdm(10,28),analyzeTime:new Date().toLocaleString('zh-CN'),tags:['#茶文化','#知识科普','#生活技巧','#单人口播'],stats:{likes:rdm(1000,9000),comments:rdm(50,500),shares:rdm(100,1000),favorites:rdm(500,3000)},summary:'本内容从用户日常泡茶场景切入，用通俗语言解释了盖碗盖子摆放的三种常见方式及其背后的茶文化逻辑。节奏舒缓、信息密度适中，适合茶文化爱好者和新手观看收藏。',sections:[{title:'一、选题逻辑分析',rows:[{dim:'目标人群',analysis:'茶文化爱好者 + 茶道新手，对生活美学和传统文化感兴趣的用户。'},{dim:'痛点/需求',analysis:'泡茶时不知道盖子该盖还是掀开，操作不规范影响茶汤口感。'}]},{title:'二、内容结构分析',rows:[{dim:'开场钩子',analysis:'直接抛出"盖碗盖子怎么放"的疑问，引发好奇。'},{dim:'主体论证',analysis:'分三种场景演示：全盖、半盖、掀开，并解释适用茶类。'},{dim:'结尾转化',analysis:'总结口诀，引导点赞收藏和关注。'}]},{title:'三、可复制亮点',rows:[{dim:'表现形式',analysis:'近景手部特写 + 慢动作，降低理解门槛。'},{dim:'话术特点',analysis:'用"老茶客"人设增加信任感，语言口语化。'}]}]};
-}
-VIEWS.analysis=()=>{const pending=ANALDB.filter(a=>!a.analyzeTime),done=ANALDB.filter(a=>a.analyzeTime);
- return `<h2>🔍 内容解析</h2><div class="card"><h3 style="font-size:16px;margin-bottom:6px">提交内容链接进行分析</h3><div class="anal-input"><input id="aurl" placeholder="粘贴抖音/小红书/B站/快手等视频或图文链接..."><button onclick="submitAnalysis()">提交分析</button></div><p class="muted" style="margin-top:8px">支持抖音、小红书、B站、快手、微博等平台；离线版会生成示例解析。</p></div>
- ${pending.length?`<div class="card"><h3 style="font-size:14px;color:#64748b;margin-bottom:10px">待分析 (${pending.length})</h3>${pending.map(a=>`<div class="anal-card"><div class="anal-title">${esc(a.url.slice(0,60))}</div><div class="btn-row"><span class="muted">等待AI分析</span><button class="ghost" onclick="deleteAnalysis('${a.id}')">删除</button></div></div>`).join('')}</div>`:''}
- ${done.length?`<div class="card"><h3 style="font-size:14px;color:#16a34a;margin-bottom:10px">已完成分析 (${done.length})</h3>${done.map(a=>renderAnalysisCard(a)).join('')}</div>`:`<div class="card"><p class="muted">还没有分析记录，粘贴一个链接试试吧。</p></div>`}
- <div class="anal-detail" id="adetail" onclick="if(event.target.id==='adetail')closeDetail()"><div class="anal-detail-box" id="abox"></div></div>`;};
-function renderAnalysisCard(a){return `<div class="anal-card"><div class="anal-title">${esc(a.title)}</div><div class="anal-meta">${a.tags.map(t=>`<span class="anal-tag">${esc(t)}</span>`).join('')}<span class="anal-tag" style="background:#dbeafe;color:#1d4ed8">${a.platform}</span><span class="anal-tag" style="background:#fef3c7;color:#b45309">${a.type}</span></div><div class="anal-stat">👍 ${a.stats.likes}　💬 ${a.stats.comments}　↗ ${a.stats.shares}　⭐ ${a.stats.favorites}</div><div class="anal-summary">${esc(a.summary)}</div><div class="btn-row" style="margin-top:10px"><span class="anal-link" onclick="showDetail('${a.id}')">查看详情 →</span><span class="anal-link" onclick="window.open('${a.url}','_blank')">查看原文 →</span><button class="ghost" onclick="deleteAnalysis('${a.id}')">删除</button></div></div>`;}
-function submitAnalysis(){const u=$('#aurl').value.trim();if(!u){toast('请输入链接');return;}if(!/^https?:\/\//i.test(u)){toast('请输入以 http:// 或 https:// 开头的链接');return;}ANALDB.unshift({id:uid(),url:u});setTimeout(()=>{const idx=ANALDB.findIndex(x=>x.url===u&&!x.analyzeTime);if(idx>=0){ANALDB[idx]=mockAnalyze(u);ANALDB[idx].id=ANALDB[idx].id||uid();store.set('analysis',ANALDB);render();}},600);store.set('analysis',ANALDB);$('#aurl').value='';toast('已提交，正在分析…');render();}
-function deleteAnalysis(id){const i=ANALDB.findIndex(a=>a.id===id);if(i>=0){ANALDB.splice(i,1);store.set('analysis',ANALDB);render();}}
-function showDetail(id){const a=ANALDB.find(x=>x.id===id);if(!a)return;$('#abox').innerHTML=`<div class="anal-close" onclick="closeDetail()">×</div><h2 style="margin-top:0">${esc(a.title)}</h2><div class="anal-meta">${a.tags.map(t=>`<span class="anal-tag">${esc(t)}</span>`).join('')}<span class="anal-tag" style="background:#dbeafe;color:#1d4ed8">${a.platform}</span></div><div class="anal-stat">👍 ${a.stats.likes}　💬 ${a.stats.comments}　↗ ${a.stats.shares}　⭐ ${a.stats.favorites}</div><p class="muted">作者：${a.author}　粉丝：${a.fans}　时长：${a.duration}　发布时间：${a.publishTime}　分析时间：${a.analyzeTime}</p><p><span class="anal-link" onclick="window.open('${a.url}','_blank')">查看原文 →</span></p>${a.sections.map(s=>`<div class="anal-section"><h3>${esc(s.title)}</h3><table class="anal-table">${s.rows.map(r=>`<tr><td>${esc(r.dim)}</td><td>${esc(r.analysis)}</td></tr>`).join('')}</table></div>`).join('')}`;$('#adetail').classList.add('show');}
-function closeDetail(){$('#adetail').classList.remove('show');}
-INIT.analysis=()=>{if(!ANALDB.length){ANALDB.push(mockAnalyze('https://v.douyin.com/example'));store.set('analysis',ANALDB);render();}};
-
 /* ---------- 经期记录 ---------- */
 let perY=new Date().getFullYear(),perM=new Date().getMonth();
 function changeMonth(d){perM+=d;if(perM>11){perM=0;perY++;}if(perM<0){perM=11;perY--;}render();}
@@ -565,10 +482,12 @@ function repNav(d){
  else if(repRange==='week'){const dt=new Date(repD);dt.setDate(dt.getDate()+d*7);repD=dt.toISOString().slice(0,10);}
  else if(repRange==='month'){const p=repM.split('-');const dt=new Date(+p[0],+p[1]-1);dt.setMonth(dt.getMonth()+d);repM=dt.toISOString().slice(0,7);}
  else repY+=d;
+ if(repY<2000)repY=2000;
+ if(repY>2099)repY=2099;
  render();
 }
 function moneyReport(){
- const now=new Date();const ym=today().slice(0,7);
+ const ym=today().slice(0,7);
  if(!repM)repM=ym;
  const tx=store.get('tx',[]);const cm=repFilter(tx);
  const inc=cm.filter(t=>t.type==='in').reduce((a,b)=>a+b.amount,0),out=cm.filter(t=>t.type==='out').reduce((a,b)=>a+b.amount,0);
@@ -592,10 +511,6 @@ function moneyReport(){
  }
  return h;
 }
-function changeRepMonth(d){
- const p=repM.split('-');const y=+p[0],m=+p[1]-1;const dt=new Date(y,m);dt.setMonth(dt.getMonth()+d);
- repM=dt.toISOString().slice(0,7);render();
-}
 function addTx(){const type=$('#tt').value,cat=$('#tc').value.trim(),amt=+$('#ta').value,note=$('#tn').value.trim();if(!cat||!amt){toast('请填分类和金额');return;}
  const tx=store.get('tx',[]);tx.unshift({id:uid(),date:today(),type,cat,amount:amt,note,createdAt:Date.now()});store.set('tx',tx);toast('已记录');render();}
 INIT.money=()=>{
@@ -611,7 +526,7 @@ INIT.money=()=>{
    const ctx=cv.getContext('2d');const w=cv.width=cv.parentElement.offsetWidth-32,h=cv.height=240;ctx.clearRect(0,0,w,h);
    if(!cats.length){ctx.fillStyle='#94a3b8';ctx.font='14px sans-serif';ctx.textAlign='center';ctx.fillText('暂无数据',w/2,h/2);return;}
    const max=Math.max(...cats.map(c=>c[1]));const barW=Math.min(40,(w-60)/cats.length-10);
-   const cols=repType==='out'?['#f97316','#fb923c','#fdba74','#fed7aa','#ffedd5','#fca5a5','#f87171','#ef4448']:['#16a34a','#22c55e','#4ade80','#86efac','#bbf7d0','#34d399','#10b981','#059669'];
+   const cols=repType==='out'?['#f97316','#fb923c','#fdba74','#fed7aa','#ffedd5','#fca5a5','#f87171','#ef4444']:['#16a34a','#22c55e','#4ade80','#86efac','#bbf7d0','#34d399','#10b981','#059669'];
    ctx.font='11px sans-serif';ctx.textAlign='center';
    cats.forEach((c,i)=>{
     const x=40+i*(barW+10),barH=(c[1]/max)*160;
@@ -622,7 +537,6 @@ INIT.money=()=>{
   },50);
  }
 };
-
 /* ---------- 基金理财 ---------- */
 let fundTab='holdings';
 VIEWS.fund=()=>{
@@ -699,7 +613,7 @@ function fundAnalysis(){
  const ts=saved?new Date(saved.time).toLocaleString('zh-CN'):'—';
  const a=saved&&saved.market===JSON.stringify(mk)?saved.analysis:generateAnalysis(f,mk);
  store.set('fundAnalysis',{time:Date.now(),market:JSON.stringify(mk),analysis:a});
- let h=`<div class="card" style="margin-bottom:14px"><div class="news-meta" style="margin-bottom:4px">数据刷新时间：${ts}</div>`;
+ let h=`<div class="card" style="margin-bottom:14px"><div class="muted" style="margin-bottom:4px">数据刷新时间：${ts}</div>`;
  h+=`<div class="mkt-grid">`;
  [{l:'上证指数',v:mk.sh.v,chg:mk.sh.chg},{l:'深证成指',v:mk.sz.v,chg:mk.sz.chg},{l:'创业板指',v:mk.gem.v,chg:mk.gem.chg},{l:'科创50',v:mk.star.v,chg:mk.star.chg}].forEach(m=>{
   const up=+m.chg>=0;h+=`<div class="mkt-card"><div class="l">${m.l}</div><div class="n" style="color:${up?'#dc2626':'#16a34a'}">${m.v}</div><div class="chg" style="color:${up?'#dc2626':'#16a34a'}">${up?'+':''}${m.chg}%</div></div>`;
@@ -716,10 +630,8 @@ function generateAnalysis(funds,mk){
  const marketTone=shUp&&hotUp>=5?'震荡偏强':shUp?'震荡分化':hotUp<=3?'弱势调整':'震荡偏弱';
  const pl=funds.reduce((a,b)=>a+(b.val-b.cost),0),totVal=funds.reduce((a,b)=>a+b.val,0);
  const plPct=funds.reduce((a,b)=>a+b.cost,0);const retPct=plPct?((pl/plPct)*100).toFixed(1):0;
- // 大盘行情简述
  let h=`<div class="anl-section"><h3>一、大盘行情简述</h3><p>当前A股市场整体呈<b>${marketTone}</b>格局。上证指数报${mk.sh.v}点（${+mk.sh.chg>=0?'+':''}${mk.sh.chg}%），深证成指报${mk.sz.v}点（${+mk.sz.chg>=0?'+':''}${mk.sz.chg}%）。创业板指${+mk.gem.chg>=0?'上涨':'下跌'}${mk.gem.chg}%，科创50${+mk.star.chg>=0?'上涨':'下跌'}${mk.star.chg}%。</p>
   <p style="margin-top:6px">板块方面，${mk.hot.filter(h=>+h.chg>=0).slice(0,3).map(h=>h.name).join('、')}等涨幅居前，${mk.hot.filter(h=>+h.chg<0).slice(0,3).map(h=>h.name).join('、')}表现偏弱。债市方面，10年期国债收益率${mk.bond}%，整体流动性${mk.bond<2.8?'偏宽松':'中性'}。国际方面，美联储降息预期升温，全球风险偏好${shUp?'回升':'有所回落'}。</p></div>`;
- // 单只基金点评
  h+=`<div class="anl-section"><h3>二、单只基金点评</h3>`;
  funds.forEach((x,i)=>{
   const pl=x.val-x.cost,plPct2=x.cost?((pl/x.cost)*100).toFixed(1):0;const up=pl>=0;
@@ -731,11 +643,9 @@ function generateAnalysis(funds,mk){
    <p>成本 ¥${x.cost.toFixed(0)} → 市值 ¥${x.val.toFixed(0)}（<span style="color:${up?'#dc2626':'#16a34a'}">${up?'+':''}${plPct2}%</span>）。${comment}</p></div>`;
  });
  h+=`</div>`;
- // 组合优劣分析
  h+=`<div class="anl-section"><h3>三、组合优劣分析</h3><p>当前组合总市值 ¥${totVal.toFixed(0)}，累计盈亏 <span style="color:${pl>=0?'#dc2626':'#16a34a'}">${pl>=0?'+':''}${pl.toFixed(0)}元（${pl>=0?'+':''}${retPct}%）</span>。</p>
   <p style="margin-top:6px"><b>优势：</b>持仓分散于${funds.length}只基金，涵盖${funds.map(f=>f.name.split(/ETF|联接|精选/)[0]).filter((v,i,a)=>a.indexOf(v)===i).join('、')}等多个方向，有助于分散单一行业风险。${pl>=0?'整体组合实现了正收益，资产配置策略有效。':'虽然短期承压，但分散化配置避免了过度集中于弱势板块。'}</p>
   <p style="margin-top:6px"><b>不足：</b>${funds.length<=2?'持仓数量偏少，缺乏足够的分散度，单一品种波动对组合影响较大。':''}${mk.hot.filter(h=>+h.chg>=0).length>=5?'当前热门赛道（如半导体、人工智能）在组合中可能配置不足，错失了结构性机会。':'市场整体偏弱，短期缺乏明显的进攻性配置。'}建议关注组合的行业均衡性和攻守兼备的配置比例。</p></div>`;
- // 新增可买标的
  h+=`<div class="anl-section"><h3>四、新增可买标的</h3><p>结合当前市场环境和组合现状，推荐以下标的作为潜在配置方向：</p>`;
  const recs=[
   {n:'科创50ETF（588000）',r:'科技创新是长期主线，科创50当前估值处于历史中低位，适合长期定投。'},
@@ -753,6 +663,7 @@ function generateAnalysis(funds,mk){
  return h;
 }
 function refreshAnalysis(){store.set('fundAnalysis',null);toast('正在刷新行情与分析…');render();}
+
 INIT.fund=()=>{};
 
 /* ---------- 倒计时 ---------- */
